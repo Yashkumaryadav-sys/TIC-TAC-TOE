@@ -3,7 +3,7 @@
 #include<stdlib.h>
 int main()
 {
- int arr[9],k;
+ int arr[9],k;  //stage 1.
  for(k=0;k<9;k++){
      arr[k]=k+1;
  }
