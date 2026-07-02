@@ -4,27 +4,22 @@
 #include<ctype.h>
 int main()
 {
- char arr[9],player1,player2,currentplayer,nameplayer1[10],nameplayer2[10];  //stage 3.
+ char arr[9],player1,player2,currentplayer,nameplayer1[10],nameplayer2[10];  //stage 2.
  int i,j,k,choice,index;
-
  printf("Enter the name of the first player1:");
  scanf("%s",nameplayer1);
  printf("Enter the name of the player2:");
  scanf("%s",nameplayer2);
-
  nameplayer1[0] = toupper(nameplayer1[0]);
  nameplayer2[0] = toupper(nameplayer2[0]);
-  
  do
  {
  printf("Enter your choice %s 'X' 'O': \n",nameplayer1);
  scanf(" %c",&player1);
  }
-
  while(player1 != 'x' && player1 != 'o' && player1 != 'X' && player1 != 'O');
  
  player1 = toupper(player1);
-
  if(player1 == 'X')
     player2 = 'O';
 else
