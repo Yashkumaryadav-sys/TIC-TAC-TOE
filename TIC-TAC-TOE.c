@@ -1,9 +1,13 @@
 #include<stdio.h>
-#include<conio.h> 
 #include<stdlib.h>
 #include<ctype.h>
-char arr[9],player1,player2,currentplayer,nameplayer1[10],nameplayer2[10],winner; 
-int i,j,k,choice,ind,res;
+#ifdef _WIN32
+    #define CLEAR "cls"
+#else
+    #define CLEAR "clear"
+#endif
+char arr[9],player1,player2,currentplayer,nameplayer1[10],nameplayer2[10],winner,playagain; 
+int i,j,k,choice,ind,res,count,player1_score,player2_score,draw_score;
 void print_board(char arr[])
 {
   for(i=0;i<3;i++)
@@ -67,10 +71,16 @@ char check_win(char arr[])
 }
 int main()
 {
- printf("Enter the name of the first player1:");
+ printf("\n===============================\n");
+ printf("==WELCOME TO TIC TAC TOE GAME==\n");
+ printf("===============================\n");
+ printf("Enter the name of the player1:");
  scanf("%s",nameplayer1);
  printf("Enter the name of the player2:");
  scanf("%s",nameplayer2);
+ player1_score=0;
+ player2_score=0;
+ draw_score=0;
  nameplayer1[0] = toupper(nameplayer1[0]);
  nameplayer2[0] = toupper(nameplayer2[0]);
  do
@@ -92,14 +102,22 @@ else
  currentplayer=player1;
 
  printf("\n");
- printf("Board: \n");
+ printf("=============\n");
+ printf("====BOARD====\n");
+ printf("=============\n");
 
+ printf("\n");
+while (1)
+{
  for(k=0;k<9;k++)
  {
      arr[k]=k+'1';
  }
+ count=0;
+ currentplayer = player1;
  while(1)
  { 
+    system(CLEAR);
     print_board(arr);
     if (currentplayer == player1)
     {
@@ -139,6 +157,7 @@ if(arr[ind] == 'X' || arr[ind] == 'O')
     continue;
 }
 arr[ind] = currentplayer;
+count+=1;
 winner=check_win(arr);
 if(winner==player1)
 {
@@ -152,6 +171,12 @@ else if(winner==player2)
     printf("%s wins!",nameplayer2);
     break;
 }
+else if (count == 9)
+{
+    print_board(arr);
+    printf("It's a draw ! \n");
+    break;
+}
  
 if(currentplayer == player1)
 {
@@ -162,5 +187,52 @@ else
     currentplayer = player1;
 }
  }
+ if(winner == player1)
+ {
+    player1_score++;
+ }
+ else if(winner == player2)
+ {
+    player2_score++;
+ }
+ else
+ {
+    draw_score++;
+ }
+ printf("\n===================\n");
+ printf("====SCORE BOARD====\n");
+ printf("===================\n");
+ printf("%s:%d \n",nameplayer1,player1_score);
+ printf("%s:%d \n",nameplayer2,player2_score);
+ printf("Draw:%d \n",draw_score);
+ printf("\n===================\n");
+ printf("Play Again:(Y/N) \n");
+ scanf(" %c",&playagain);
+ playagain=toupper(playagain);
+ if(playagain == 'N')
+ {
+    break;
+ }
+ }
+ printf("\n===================\n");
+ printf("====FINAL SCORE====\n");
+ printf("===================\n");
+ if(player1_score > player2_score)
+ {
+    printf("%s is a winner! \n",nameplayer1);
+    printf("By %d Points \n",player1_score - player2_score);
+    printf("Thanks for playing! \n");
+ }
+ else if (player2_score > player1_score)
+ {
+    printf("%s is a winner! \n",nameplayer2);
+    printf("By %d Points \n",player2_score - player1_score);
+    printf("Thanks for playing! \n");
+ }
+ else{
+    printf("Match draw! \n");
+    printf("Thanks for playing! \n");
+ }
+ printf("===================\n");
  return 0;
 }
