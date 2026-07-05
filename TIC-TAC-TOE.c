@@ -482,7 +482,7 @@ else
     printf("Play Again?(Y/N)\n");
     scanf(" %c",&playagain);
     playagain=toupper(playagain);
-    if(playagain=='N')
+    if(playagain == 'N')
         break;
 }
 
