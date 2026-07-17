@@ -332,14 +332,23 @@ else
  printf("%s:%d \n",nameplayer2,player2_score);
  printf("Draw:%d \n",draw_score);
  printf("\n===================\n");
+ do
+ {
  printf("Play Again:(Y/N) \n");
  scanf(" %c",&playagain);
  playagain=toupper(playagain);
- if(playagain == 'N')
+ if(playagain != 'N' && playagain != 'Y')
  {
+    printf("Invalid Choice ! Please Enter 'Y' and 'N' only. \n");
+ }
+}
+ while(playagain != 'Y' && playagain != 'N');
+ system(CLEAR);
+if(playagain == 'N')
+{
     break;
- }
- }
+}
+}
  printf("\n===================\n");
  printf("====FINAL SCORE====\n");
  printf("===================\n");
@@ -479,11 +488,21 @@ else
     printf("Draw:%d\n",draw_score);
     printf("===================\n");
 
+    do
+    {
     printf("Play Again?(Y/N)\n");
     scanf(" %c",&playagain);
     playagain=toupper(playagain);
+    if(playagain != 'Y' && playagain != 'N')
+    {
+        printf("Invalid Choice ! Please enter 'Y' or 'N' only");
+    }
+    }
+    while(playagain != 'Y' && playagain != 'N');
     if(playagain == 'N')
+    {
         break;
+    }
 }
 
 printf("\n===================\n");
@@ -509,11 +528,19 @@ else
 printf("===================\n");
 }
 printf("\n");
+do
+{
 printf(" ----------------------\n");
 printf(" Start new game? (Y/N): \n ");
 printf("-----------------------\n");
         scanf(" %c", &playagain);
         playagain = toupper(playagain);
+        if(playagain != 'Y' && playagain != 'N')
+        {
+            printf("Invalid Choice ! Please Enter 'Y' or 'N' Only ");
+        }
+    }
+        while(playagain != 'Y' && playagain != 'N');
         system(CLEAR);
     }
     while(playagain == 'Y');
